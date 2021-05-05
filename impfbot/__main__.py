@@ -3,7 +3,6 @@ import re
 import time
 
 import simpleaudio as sa
-import win32api
 from selenium import webdriver
 
 
