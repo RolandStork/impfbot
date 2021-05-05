@@ -7,6 +7,18 @@ import win32api
 from selenium import webdriver
 
 
+def accept_cookies(cookies_accepted):
+    if cookies_accepted:
+        return True
+
+    time.sleep(1)
+
+    if "Wir verwenden Cookies" in driver.page_source:
+        cookie_button = driver.find_element_by_css_selector("app-root > div > div > div > div.row.no-gutters.user-select-none > div.col-10.offset-1.col-md-6.offset-md-0.text-center.text-md-left > div > div:nth-child(2) > a")
+        cookie_button.click()
+
+    return True
+
 def use_transfer_code(transfer_code):
     yes_button = driver.find_element_by_css_selector("app-corona-vaccination > div:nth-child(2) > div > div > label:nth-child(1) > span")
     yes_button.click()
@@ -45,10 +57,13 @@ driver = webdriver.Chrome()
 driver.implicitly_wait(30)
 driver.maximize_window()
 
+cookies_accepted = False
+
 while not appointment_found:
     post_code = post_codes[i]
     transfer_code = transfer_codes[i]
     driver.get("https://005-iz.impfterminservice.de/impftermine/service?plz={}".format(post_code))
+    cookies_accepted = accept_cookies(cookies_accepted)
 
     while "Virtueller Warteraum" in driver.page_source:
         time.sleep(1)
