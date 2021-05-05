@@ -40,20 +40,20 @@ def request_transfer_code(driver):
     no_button.click()
 
 def ring_alarm():
-    filename = 'alarm.wav'
+    filename = 'resources/alarm.wav'
     wave_obj = sa.WaveObject.from_wave_file(filename)
     play_obj = wave_obj.play()
     play_obj.wait_done()  # Wait until sound has finished playing
 
 parser = configparser.ConfigParser()
-parser.read('config.ini')
+parser.read('resources/config.ini')
 
 post_codes = parser.get('impfbot', 'post_codes').split(',')
 transfer_codes = parser.get('impfbot', 'transfer_codes').split(',')
 i = 0
 appointment_found = False
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome("resources/chromedriver.exe")
 driver.implicitly_wait(30)
 driver.maximize_window()
 

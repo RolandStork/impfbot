@@ -17,7 +17,9 @@ pip install .
 
 ## Usage
 
-First add your post codes and transfer codes (if available) to the `config.ini`. If you don't have transfer codes, just enter `x` or some invalid code. Then start the Python script:
+1. First copy and rename the `resources/config.ini.example` to `resources/config.ini`.
+2. Then add your post codes and transfer codes (if available) to the config file. If you don't have transfer codes, just enter `x` or some invalid code.
+3. Then start the Python script:
 
 ```sh
 python impfbot
