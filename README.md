@@ -8,7 +8,6 @@ Impfbot is a Python scripts which checks periodically for available vaccination 
 
 - Python 3
 - Google Chrome
-- Microsoft Windows
 
 ## Setup
 
@@ -23,3 +22,7 @@ First add your post codes and transfer codes (if available) to the `config.ini`.
 ```sh
 python impfbot
 ```
+
+## Credits
+
+- [Alarm sound](https://freesound.org/people/guitarguy1985/sounds/54048/) by guitarguy1985

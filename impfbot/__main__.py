@@ -2,6 +2,7 @@ import configparser
 import re
 import time
 
+import simpleaudio as sa
 import win32api
 from selenium import webdriver
 
@@ -25,6 +26,12 @@ def use_transfer_code(transfer_code):
 def request_transfer_code():
     no_button = driver.find_element_by_css_selector("app-corona-vaccination > div:nth-child(2) > div > div > label:nth-child(2) > span")
     no_button.click()
+
+def ring_alarm():
+    filename = 'alarm.wav'
+    wave_obj = sa.WaveObject.from_wave_file(filename)
+    play_obj = wave_obj.play()
+    play_obj.wait_done()  # Wait until sound has finished playing
 
 parser = configparser.ConfigParser()
 parser.read('config.ini')
@@ -55,7 +62,7 @@ while not appointment_found:
         time.sleep(1)
 
     if "Es wurden keine freien Termine in Ihrer Region gefunden." not in driver.page_source or "Onlinebuchung für Ihre Corona-Schutzimpfung" in driver.page_source:
-        win32api.MessageBox(0, 'Es wurde ein freier Termin in {} gefunden!'.format(post_code), 'Freier Impftermin')
+        ring_alarm()
         appointment_found = True
 
     i = (i + 1) % len(post_codes)

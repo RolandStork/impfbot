@@ -7,5 +7,5 @@ setup(
    author='Henning Storck',
    author_email='mail@henningstorck.com',
    packages=['impfbot'],
-   install_requires=['selenium', 'pypiwin32', 'configparser'],
+   install_requires=['selenium', 'configparser', 'simpleaudio'],
 )
