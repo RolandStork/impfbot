@@ -19,7 +19,7 @@ def accept_cookies(cookies_accepted):
 
     return True
 
-def use_transfer_code(transfer_code):
+def use_transfer_code(driver, transfer_code):
     yes_button = driver.find_element_by_css_selector("app-corona-vaccination > div:nth-child(2) > div > div > label:nth-child(1) > span")
     yes_button.click()
 
@@ -35,7 +35,7 @@ def use_transfer_code(transfer_code):
     third_input.send_keys(transfer_code_splitted[2])
     search_button.click()
 
-def request_transfer_code():
+def request_transfer_code(driver):
     no_button = driver.find_element_by_css_selector("app-corona-vaccination > div:nth-child(2) > div > div > label:nth-child(2) > span")
     no_button.click()
 
@@ -69,9 +69,9 @@ while not appointment_found:
         time.sleep(1)
 
     if re.match(r"^[0-0a-fA-F]{4}-[0-0a-fA-F]{4}-[0-0a-fA-F]{4}$", transfer_code):
-        use_transfer_code(transfer_code)
+        use_transfer_code(driver, transfer_code)
     else:
-        request_transfer_code()
+        request_transfer_code(driver)
 
     while "Bitte warten, wir suchen verfügbare Termine in Ihrer Region." in driver.page_source:
         time.sleep(1)
