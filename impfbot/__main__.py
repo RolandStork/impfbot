@@ -59,3 +59,4 @@ while not appointment_found:
         appointment_found = True
 
     i = (i + 1) % len(post_codes)
+    time.sleep(10)
